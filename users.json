@@ -1,0 +1,32 @@
+[
+  {
+    "user_id": "EMP-1001",
+    "first_name": "Alex",
+    "last_name": "Rivera",
+    "email": "arivera@testgenomic.com",
+    "department": "Engineering",
+    "job_title": "Cloud Security Engineer",
+    "cost_center": "CC-401",
+    "status": "ACTIVE"
+  },
+  {
+    "user_id": "EMP-1002",
+    "first_name": "Jordan",
+    "last_name": "Lee",
+    "email": "jlee@testgenomic.com",
+    "department": "Finance",
+    "job_title": "Financial Analyst",
+    "cost_center": "CC-202",
+    "status": "ACTIVE"
+  },
+  {
+    "user_id": "EMP-1003",
+    "first_name": "Travis",
+    "last_name": "Olive",
+    "email": "tolive@testgenomic.com",
+    "department": "Human Resource",
+    "job_title": "HR Generalist ",
+    "cost_center": "CC-203",
+    "status": "ACTIVE"
+  }
+]
