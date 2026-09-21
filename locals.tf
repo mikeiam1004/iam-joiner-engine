@@ -1,10 +1,21 @@
 locals {
   raw_users = jsondecode(file("${path.module}/users.json"))
 
-  # Filter for active identities only
-  active_users = {
+  # Map ALL identities by user_id regardless of status for account lifecycle management
+  all_users = {
     for user in local.raw_users : user.user_id => user
+  }
+
+  # Filter for active identities only (used for group entitlement assignment)
+  active_users = {
+    for user_id, user in local.all_users : user_id => user
     if user.status == "ACTIVE"
+  }
+
+  # Filter for terminated identities requiring immediate offboarding
+  terminated_users = {
+    for user_id, user in local.all_users : user_id => user
+    if user.status == "TERMINATED"
   }
 
   # Map department strings to target directory security groups

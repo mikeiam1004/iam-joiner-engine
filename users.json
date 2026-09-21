@@ -17,7 +17,8 @@
     "department": "Engineering",
     "job_title": "Software Engineer",
     "cost_center": "CC-202",
-    "status": "ACTIVE"
+     "status": "TERMINATED",
+    "termination_date": "2026-09-09T10:00:00Z"
   },
   {
     "user_id": "EMP-1003",
