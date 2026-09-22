@@ -38,6 +38,7 @@
     "department": "Engineering",
     "job_title": "Financial Analyst",
     "cost_center": "CC-204",
-    "status": "ACTIVE"
+    "status": "TERMINATED",
+    "termination_date": "2026-09-22T08:30:00Z"
   }
 ]
