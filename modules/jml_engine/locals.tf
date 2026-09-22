@@ -1,5 +1,5 @@
 locals {
-  raw_users = jsondecode(file("${path.module}/users.json"))
+  raw_users = jsondecode(file(var.json_data_path))
 
   # Map ALL identities by user_id regardless of status for account lifecycle management
   all_users = {

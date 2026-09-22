@@ -29,5 +29,15 @@
     "job_title": "HR Generalist ",
     "cost_center": "CC-203",
     "status": "ACTIVE"
+  },
+    {
+    "user_id": "EMP-1004",
+    "first_name": "Morgan",
+    "last_name": "Smith",
+    "email": "msmith@testgenomic.com",
+    "department": "Finance",
+    "job_title": "Financial Analyst",
+    "cost_center": "CC-204",
+    "status": "ACTIVE"
   }
 ]

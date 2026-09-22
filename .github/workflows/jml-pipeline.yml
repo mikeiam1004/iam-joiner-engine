@@ -1,0 +1,54 @@
+name: "Identity-as-Code CI/CD Pipeline"
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate-and-plan:
+    name: "Lint, Validate & Plan"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.5.0"
+
+      - name: Check Formatting
+        run: terraform fmt -check -recursive
+
+      - name: Initialize Workspace
+        run: terraform init -backend=false
+
+      - name: Validate Configuration
+        run: terraform validate
+
+      - name: Validate HR JSON Schema
+        run: |
+          sudo apt-get install -y jq
+          jq '.' users.json > /dev/null
+
+      - name: Run Static Security Analysis
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          soft_fail: false
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: v0.50.0
+
+      - name: Run TFLint
+        run: |
+          tflint --init
+          tflint

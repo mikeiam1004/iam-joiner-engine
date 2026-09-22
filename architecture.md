@@ -42,3 +42,33 @@ Terraform completely eliminates permission creep through **Declarative State Man
 * **The Desired State Blueprint**: Terraform doesn't look at individual actions; it checks the complete picture. When the department changes to `Engineering`, the *only* target state defined for that user key is membership in the Engineering group.
 * **Automatic Eviction (The Delta)**: Because the user's mapping to the Finance group is no longer present in the code, Terraform detects a discrepancy with the live environment. 
 * **Atomic Cleanups**: During execution, Terraform isolates this delta and fires an atomic `DELETE` command to tear down the old access right *before or alongside* granting the new one. No stale permissions are ever left behind.
+
+---
+
+## Leaver Offboarding Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant HR as HR Payload (users.json)
+    participant TF as Terraform Engine
+    participant IDP as Directory Provider
+    participant API as Graph API (Revocation)
+
+    HR->>TF: Set status = "TERMINATED"
+    TF->>IDP: PATCH /users/{id} (account_enabled = false)
+    TF->>IDP: DELETE /groups/{group_id}/members/{user_id}
+    IDP-->>TF: Entitlements Purged
+    TF->>API: POST /users/{id}/revokeSignInSessions
+    API-->>TF: Refresh Tokens Invalidated (Active Sessions Killed)
+```
+
+## SecOps Incident Response Emergency Kill-Switch
+
+If an account must be locked down immediately outside of standard automated HR cycles (such as during a live security incident or active insider threat), Security Operations personnel must bypass Terraform and execute the explicit session revocation command directly via the Azure CLI.
+
+Execute this command to immediately invalidate all active refresh tokens, cookie sessions, and app connections across all corporate endpoints:
+
+```bash
+az ad user revoke-sign-in-sessions --id "<target_user_object_id>"
+```
