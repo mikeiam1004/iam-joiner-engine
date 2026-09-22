@@ -3,6 +3,7 @@
 An automated Joiner-Mover-Leaver (JML) identity provisioning and governance engine built with Terraform, HCL delta calculations, and GitHub Actions pipelines.
 
 ## System Architecture
+
 ```mermaid
 graph TD
     A[HR Data Input / users.json] --> B[Terraform Engine Module]
@@ -22,7 +23,7 @@ graph TD
 
 ```bash
 # Clone the repository
-git clone https://github.com
+git clone https://github.com/mikeiam1004/iam-joiner-engine.git
 cd iam-joiner-engine
 
 # Initialize and plan configuration locally
