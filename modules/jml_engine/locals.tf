@@ -23,7 +23,7 @@ locals {
     "Engineering"    = "sec-grp-engineering-dept"
     "Finance"        = "sec-grp-finance-dept"
     "Security"       = "sec-grp-secops-dept"
-    "Human Resource" = "sec-grp-finance-dept"
+    "Human Resource" = "sec-grp-hr-dept"
   }
 }
 
