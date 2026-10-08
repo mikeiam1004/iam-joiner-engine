@@ -1,0 +1,16 @@
+{
+  "resource_changes": [
+    {
+      "address": "module.jml_engine.azuread_user.lifecycle[\"EMP-9001\"]",
+      "type": "azuread_user",
+      "change": {
+        "actions": ["create"],
+        "after": {
+          "display_name": "Test Compliant User",
+          "department": "Engineering",
+          "account_enabled": true
+        }
+      }
+    }
+  ]
+}

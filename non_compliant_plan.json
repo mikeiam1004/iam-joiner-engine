@@ -1,0 +1,16 @@
+{
+  "resource_changes": [
+    {
+      "address": "module.jml_engine.azuread_user.lifecycle[\"EMP-9002\"]",
+      "type": "azuread_user",
+      "change": {
+        "actions": ["create"],
+        "after": {
+          "display_name": "Test Malicious User",
+          "department": "Shadow-IT-Marketing",
+          "account_enabled": false
+        }
+      }
+    }
+  ]
+}
